@@ -39,3 +39,5 @@ if ("serviceWorker" in navigator) {
         });
         // Befor install prompt end
 }
+self.addEventListener('install', () => self.skipWaiting());
+self.addEventListener('activate', () => self.clients.claim());
