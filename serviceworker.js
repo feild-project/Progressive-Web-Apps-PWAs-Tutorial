@@ -17,3 +17,25 @@ self.addEventListener("fetch", function (event) {
     })
   );
 });
+if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/serviceworker.js", { scope: "/" })
+          .then((registration) => {
+            registration.unregister().then((boolean) => {
+            });
+          })
+          .catch((error) => {
+            
+          });
+          // Befor install prompt start
+          window.addEventListener('beforeinstallprompt', event => {
+          event.preventDefault();
+          var installDiv = document.getElementById('divInstallApp');
+          installDiv.innerHTML = '<button id="installApp" class="btn btn-outline-secondary ms-1">Install App</button>';
+          installDiv.addEventListener('click', () => {
+            event.prompt();
+            installDiv.innerHTML = ""
+          });
+        });
+        // Befor install prompt end
+}
